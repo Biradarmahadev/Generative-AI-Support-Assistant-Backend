@@ -52,27 +52,57 @@ Ideal for:
 
 ```mermaid
 graph TD
-    %% Minimal styling for mobile readability
-    classDef user fill:#0d1117,stroke:#58a6ff,stroke-width:2px,color:#fff
-    classDef api fill:#21262d,stroke:#f78166,stroke-width:2px,color:#fff
-    classDef llm fill:#2ea44f,stroke:#2ea44f,stroke-width:2px,color:#fff
-    classDef db fill:#444d56,stroke:#6e7681,stroke-width:2px,color:#fff
-    classDef cache fill:#d18616,stroke:#d18616,stroke-width:2px,color:#fff
-    classDef queue fill:#b392f0,stroke:#b392f0,stroke-width:2px,color:#fff
+    %% Styling for dark/light mode compatibility
+    classDef frontend fill:#0d1117,stroke:#58a6ff,stroke-width:2px,color:#c9d1d9,rx:8px,ry:8px
+    classDef api fill:#21262d,stroke:#f78166,stroke-width:2px,color:#f0f6fc,rx:8px,ry:8px
+    classDef llm fill:#2ea44f,stroke:#2ea44f,stroke-width:2px,color:#fff,rx:8px,ry:8px
+    classDef db fill:#444d56,stroke:#6e7681,stroke-width:2px,color:#c9d1d9,rx:8px,ry:8px
+    classDef cache fill:#d18616,stroke:#d18616,stroke-width:2px,color:#fff,rx:8px,ry:8px
+    classDef queue fill:#b392f0,stroke:#b392f0,stroke-width:2px,color:#fff,rx:8px,ry:8px
+    classDef infra fill:#30363d,stroke:#8b949e,stroke-width:2px,color:#c9d1d9,rx:8px,ry:8px
+    classDef legend fill:#161b22,stroke:#30363d,stroke-width:1px,color:#8b949e
 
-    %% Simple flow
-    A[User<br>Web / App / Slack]:::user --> B[API Gateway<br>Auth + Rate Limit]:::api
-    B --> C[Backend Core<br>FastAPI]:::api
-    C --> D[Conversation Logic<br>Session + Memory]:::api
-    D --> E[(Redis<br>Cache + Session)]:::cache
-    D --> F[(Vector DB<br>RAG + Knowledge)]:::db
-    D --> G[LLM Router<br>Mock / OpenAI / Grok]:::llm
-    G --> H[Tools<br>Search / Calc / DB]:::api
-    G --> F
-    C --> I[Background Tasks<br>Notifications / Logs]:::queue
+    %% Main user flow
+    A[User<br>Web / Mobile / Slack / Teams / WhatsApp]:::frontend
+    A -->|HTTP / WebSocket / gRPC| B[API Gateway<br>Auth • Rate Limit • CORS • Logging]:::api
 
-    %% Mobile-friendly legend
-    Legend[→ = HTTP / Sync<br>⇒ = Streaming / WS<br>→ = Async / Queue]:::api
+    subgraph "Core Backend Layer"
+        B --> C[FastAPI / NestJS / Django Ninja<br>Async APIs • Streaming Responses]:::api
+        C --> D[Conversation Manager<br>Session • Context • Memory • History]:::api
+        C --> E[Prompt Engineering & Guardrails<br>System Prompts • RAG • Tool Calls • Safety]:::api
+    end
+
+    D --> F[(Vector DB / Knowledge Store<br>Pinecone • Weaviate • PGVector • Qdrant)]:::db
+    D --> G[(Redis / Valkey<br>Session Cache • Rate Limits • Pub/Sub)]:::cache
+
+    subgraph "Generative AI Core"
+        E --> H[LLM Router & Orchestrator<br>OpenAI • Anthropic • Grok • Llama • Gemini • Mistral]:::llm
+        H -->|Function / Tool Calling| I[Tools & Agents<br>Web Search • DB Query • Math • Calendar • Code Exec]:::api
+        H -->|Retrieval Augmented Generation| F
+    end
+
+    subgraph "Async Processing"
+        C -->|Celery / RQ / Background Tasks| J[Task Queue<br>Notifications • Email • Slack • Analytics]:::queue
+    end
+
+    subgraph "Infrastructure & Observability"
+        K[Cloud / Hosting<br>AWS • GCP • Azure • Railway • Fly.io • Render]:::infra
+        L[Observability Stack<br>Langfuse • Prometheus • Grafana • Sentry • Loki]:::infra
+        M[CI/CD & Infra<br>GitHub Actions • Docker • Terraform • Helm]:::infra
+    end
+
+    %% Infrastructure connections (dotted lines)
+    B ~~~ K
+    C ~~~ K
+    H ~~~ K
+    J ~~~ K
+    C --> L
+    H --> L
+    C ~~~ M
+
+    %% Legend at bottom
+    Legend[Legend ────────────────────────────────────────<br>→ Synchronous / HTTP<br>⇒ Streaming / WebSocket<br>→ Background / Async]:::legend
+
     style Legend text-align:left
 ```
 
