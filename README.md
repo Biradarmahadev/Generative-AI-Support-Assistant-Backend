@@ -54,6 +54,34 @@ Ideal for:
 
 ---
 
+## 📸 Demo / Screenshots
+
+Real screenshots captured from a local run of the project (no mockups).
+
+## 📸 Demo / Screenshots
+
+Here are real screenshots from running the project locally.
+
+### demo1
+
+![Swagger UI](screenshots/demo1.png)
+
+### demo2  
+  
+![POST request](screenshots/demo2.png)
+
+### demo3 
+  
+![API response](screenshots/demo3.png)
+
+### demo4  
+  
+![Terminal logs](screenshots/demo4.png)
+
+### demo5
+ 
+![Docker run](screenshots/demo5.png)
+
 
 
 
