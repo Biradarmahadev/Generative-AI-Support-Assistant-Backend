@@ -48,7 +48,7 @@ Ideal for:
 - Multi-stage **Dockerfile** + **docker-compose** support
 - Ready for future extensions: auth, persistence, conversation memory
 
-## 🏗 Modern Architecture Overview (Mobile-Friendly)
+## 🏗 Modern Architecture Overview 
 
 ```mermaid
 graph TD
