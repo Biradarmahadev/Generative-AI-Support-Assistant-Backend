@@ -1,3 +1,19 @@
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=36&pause=1000&color=6A5ACD&center=true&vCenter=true&width=700&lines=Generative+AI+Support+Assistant;FastAPI+Backend+with+Mock+LLM;Built+for+Real-World+AI+Support" alt="Typing SVG Banner">
+  <br><br>
+  
+  <img src="https://img.shields.io/badge/Made%20with-FastAPI-005571?style=for-the-badge&logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/LLM%20Mock-Offline%20%26%20Free-00C4B4?style=for-the-badge" />
+  
+  <br><br>
+  <strong>Production-style • Modular • AI-ready • Dockerized</strong>
+</div>
+
+<br>
+
+
 # Generative AI Support Assistant Backend
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
@@ -5,9 +21,23 @@
 [![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Clean, production-style FastAPI backend** simulating a **Generative AI-powered customer support system**.
+**Modern FastAPI backend simulating intelligent customer support powered by generative AI**  
+(fully offline mock layer – production-ready architecture – easy LLM upgrade path)
 
-Demonstrates modern backend architecture patterns, AI service abstraction, structured logging, environment management and container-ready deployment — perfect for learning, portfolio showcase or as a foundation for real-world AI-integrated support platforms.
+Showcases:
+
+- Clean layered architecture & service abstraction  
+- Mock AI with keyword intent detection (refund, delivery, login, complaint…)  
+- Structured logging + correlation IDs  
+- Pydantic-powered config & validation  
+- Docker multi-stage build + compose support  
+- Automatic Swagger/ReDoc documentation  
+
+Ideal for:  
+→ learning enterprise FastAPI patterns  
+→ AI-integrated backend portfolio projects  
+→ prototyping real customer support agents without API costs  
+
 
 ---
 
